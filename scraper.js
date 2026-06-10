@@ -4,23 +4,17 @@ async function run() {
     {
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/137.0.0.0 Safari/537.36",
+          "Mozilla/5.0 (Windows NT 10.0; Win64; Win64; x64) AppleWebKit/537.36 Chrome/137.0.0.0 Safari/537.36",
       },
     }
   );
 
   const html = await response.text();
 
-  console.log("HTML LENGTH:", html.length);
+  const start = html.indexOf('"id":"148401960"');
 
   console.log(
-    "Contains listing_search_results:",
-    html.includes("listing_search_results")
-  );
-
-  console.log(
-    "Contains BuySearchResultsItem:",
-    html.includes("BuySearchResultsItem")
+    html.substring(start - 500, start + 5000)
   );
 }
 
