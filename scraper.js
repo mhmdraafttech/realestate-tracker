@@ -1,33 +1,16 @@
-import { chromium } from "playwright";
+import https from "https";
 
-console.log("START");
+https.get(
+  "https://www.realestate.com.au/buy/in-sydney,+nsw+2000/list-1",
+  (res) => {
+    let data = "";
 
-async function scrape() {
-  const browser = await chromium.launch({
-    headless: true
-  });
+    res.on("data", (chunk) => {
+      data += chunk;
+    });
 
-  const page = await browser.newPage();
-
-  await page.goto(
-    "https://www.realestate.com.au/buy/in-sydney,+nsw+2000/list-1",
-    {
-      waitUntil: "domcontentloaded"
-    }
-  );
-
-  console.log("TITLE:");
-  console.log(await page.title());
-
-  console.log("URL:");
-  console.log(page.url());
-
-  await browser.close();
-}
-
-scrape()
-  .then(() => console.log("DONE"))
-  .catch(err => {
-    console.error("ERROR:");
-    console.error(err);
-  });
+    res.on("end", () => {
+      console.log(data.substring(0, 5000));
+    });
+  }
+);
