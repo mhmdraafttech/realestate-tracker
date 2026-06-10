@@ -1,5 +1,8 @@
-- name: Upload screenshot
-  uses: actions/upload-artifact@v4
-  with:
-    name: page-screenshot
-    path: page.png
+{
+  "name": "realestate-tracker",
+  "version": "1.0.0",
+  "dependencies": {
+    "googleapis": "^140.0.0",
+    "playwright": "^1.53.0"
+  }
+}
