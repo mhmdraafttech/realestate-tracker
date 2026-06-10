@@ -33,7 +33,7 @@ async function scrapeSuburb(page, suburb) {
         suburb: suburbEl ? suburbEl.innerText.trim() : '',
         price: priceEl ? priceEl.innerText.trim() : 'Price not disclosed',
         url: linkEl ? 'https://www.realestate.com.au' + linkEl.getAttribute('href') : '',
-        listingId: linkEl ? linkEl.getAttribute('href').match(/\d+/) ?. [0] : '' : '',
+        listingId: linkEl ? (linkEl.getAttribute('href').match(/\d+/) || [''])[0] : '',
         dateSeen: new Date().toISOString().split('T')[0]
       });
     });
